@@ -3,7 +3,6 @@ Author: Sean
 Date: 2021-05-22 23:21:42
 LastEditTime: 2021-05-24 10:34:26
 Description: Crawler of Taiwan Covid-19 statistics (台灣疫情報告)
-FilePath: /Crawler/covid-19.py
 '''
 
 import requests

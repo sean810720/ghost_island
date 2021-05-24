@@ -1,9 +1,8 @@
 '''
 Author: Sean
 Date: 2021-05-23 01:44:57
-LastEditTime: 2021-05-24 10:38:38
+LastEditTime: 2021-05-24 13:05:02
 Description: Crawler of Taiwan power (台電電力供應)
-FilePath: /Crawler/power.py
 '''
 
 import requests
