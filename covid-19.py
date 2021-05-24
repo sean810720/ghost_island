@@ -1,14 +1,27 @@
 '''
 Author: Sean
 Date: 2021-05-22 23:21:42
-LastEditTime: 2021-05-24 10:34:26
+LastEditTime: 2021-05-24 15:16:10
 Description: Crawler of Taiwan Covid-19 statistics (台灣疫情報告)
 '''
 
 import requests
 from bs4 import BeautifulSoup
 
+# 初始化 Firebase 連接
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+cred = credentials.Certificate(
+    "./Firebase/ghost-island-ab1d8-firebase-adminsdk-swrsg-a2201ff4d7.json")
+firebase_admin.initialize_app(
+    cred, {'databaseURL': 'https://ghost-island-ab1d8-default-rtdb.firebaseio.com/'})
+
 try:
+
+    # Get a database reference.
+    doc_ref = db.reference('covid-19')
+    data = []
 
     # 台灣疫情報告
     res = requests.get(
@@ -52,6 +65,17 @@ try:
         new_deaths = new_deaths.split("+ ")[1]
     print("新增死亡:", new_deaths)
 
+    data.append({
+        "total_confirmed": total_confirmed,
+        "total_deaths": total_deaths,
+        "recovered": recovered,
+        "rate_deaths": rate_deaths,
+        "new_confirmed": new_confirmed,
+        "new_deaths": new_deaths
+    })
+
+    # 寫入 database reference.
+    doc_ref.set(data)
     print("\nTaiwan Covid-19 statistics updated")
 
 except Exception as e:

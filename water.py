@@ -1,7 +1,7 @@
 '''
 Author: Sean
 Date: 2021-05-23 01:44:57
-LastEditTime: 2021-05-24 13:05:10
+LastEditTime: 2021-05-24 15:18:45
 Description: Crawler of Taiwan water (水庫剩餘量)
 '''
 
@@ -9,7 +9,21 @@ import requests
 import json
 from bs4 import BeautifulSoup
 
+# 初始化 Firebase 連接
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+cred = credentials.Certificate(
+    "./Firebase/ghost-island-ab1d8-firebase-adminsdk-swrsg-a2201ff4d7.json")
+firebase_admin.initialize_app(
+    cred, {'databaseURL': 'https://ghost-island-ab1d8-default-rtdb.firebaseio.com/'})
+
 try:
+
+    # Get a database reference.
+    doc_ref = db.reference('water')
+    data = []
+
     # 台灣水庫即時水情
 
     # 水情數據
@@ -59,6 +73,16 @@ try:
         update_at = json[0][key]["updateAt"]
         print("更新時間:", update_at)
 
+        data.append({
+            "name": name,
+            "volumn": volumn,
+            "percentage": percentage,
+            "due_day": due_day,
+            "update_at": update_at
+        })
+
+    # 寫入 database reference.
+    doc_ref.set(data)
     print("\nTaiwan water updated")
 
 except Exception as e:
