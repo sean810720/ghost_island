@@ -1,12 +1,12 @@
 <!--
  * @Author: Sean
  * @Date: 2021-05-25 16:51:42
- * @LastEditTime: 2021-05-25 17:20:09
+ * @LastEditTime: 2021-05-25 17:21:16
 -->
 
 <p align="center"><h1>鬼島生存小本本 - 資料爬蟲</h1></p>
 <p align="left">
-API 目前已放上雲端，連結如下:<br/>
+API 目前已放上雲端，連結如下:<br/><br/>
 (1) 台灣疫情日報<br/>
 https://ghost-island-ab1d8-default-rtdb.firebaseio.com/covid-19/0.json
 <br/>
