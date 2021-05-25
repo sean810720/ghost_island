@@ -1,7 +1,7 @@
 <!--
  * @Author: Sean
  * @Date: 2021-05-25 16:51:42
- * @LastEditTime: 2021-05-25 17:12:16
+ * @LastEditTime: 2021-05-25 17:14:03
 -->
 
 <p align="center"><h1>鬼島生存小本本 - 資料爬蟲</h1></p>
@@ -13,15 +13,17 @@ pip3 install -r requirements.txt
 
 ## 2. 執行
 
-``` 台灣疫情日報
-    python3 covid-19.py
+### 台灣疫情日報
+```
+python3 covid-19.py
 ```
 
-
-``` 台電供電
-    python3 power.py
+### 台電供電
+```
+python3 power.py
 ```
 
-``` 水庫水情
-    python3 water.py
+### 水庫水情
+```
+python3 water.py
 ```
