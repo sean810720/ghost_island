@@ -1,7 +1,7 @@
 '''
 Author: Sean
 Date: 2021-05-23 01:44:57
-LastEditTime: 2021-05-24 15:18:45
+LastEditTime: 2021-05-25 10:29:51
 Description: Crawler of Taiwan water (水庫剩餘量)
 '''
 
@@ -61,13 +61,18 @@ try:
             json[0][key]["baseAvailable"]) * float(percentage) / 100
 
         # 淨使用量
-        daliy_net_flow = float(
+        daliy_net_flow = "---" if json[0][key]["daliyNetflow"] == "--" or json[0][key]["daliyNetflow"] <= 0 else float(
             json[0][key]["daliyNetflow"])
 
         # 剩餘天數
-        due_day = int(remain_available / daliy_net_flow)
-        due_day = 0 if due_day < 0 else due_day
+        due_day = "---" if daliy_net_flow == "---" else int(
+            remain_available / daliy_net_flow)
         print("剩餘天數:", due_day)
+
+        # 水量狀態
+        remain_available_status = "上升" if json[0][key]["daliyNetflow"] != "--" and json[0][key][
+            "daliyNetflow"] <= 0 else "下降"
+        print("水量狀態:", remain_available_status)
 
         # 更新時間
         update_at = json[0][key]["updateAt"]
@@ -78,6 +83,7 @@ try:
             "volumn": volumn,
             "percentage": percentage,
             "due_day": due_day,
+            "remain_available_status": remain_available_status,
             "update_at": update_at
         })
 
