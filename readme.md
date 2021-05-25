@@ -1,10 +1,11 @@
 <!--
  * @Author: Sean
  * @Date: 2021-05-25 16:51:42
- * @LastEditTime: 2021-05-25 17:14:03
+ * @LastEditTime: 2021-05-25 17:15:22
 -->
 
-<p align="center"><h1>鬼島生存小本本 - 資料爬蟲</h1></p>
+<p align="center"><h1>鬼島生存小本本</h1></p>
+<p align="left">資料爬蟲</p>
 <br/>
 
 ## 1. 套件安裝
