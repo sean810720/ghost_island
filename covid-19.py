@@ -1,7 +1,7 @@
 '''
 Author: Sean
 Date: 2021-05-22 23:21:42
-LastEditTime: 2021-05-24 15:16:10
+LastEditTime: 2021-06-14 18:43:01
 Description: Crawler of Taiwan Covid-19 statistics (台灣疫情報告)
 '''
 
@@ -39,11 +39,6 @@ try:
         ".country_deaths")) == 0 else soup.select(".country_deaths")[0].text
     print("累積死亡:", total_deaths)
 
-    # 解除隔離
-    recovered = "0" if len(soup.select(
-        ".country_recovered")) == 0 else soup.select(".country_recovered")[0].text
-    print("解除隔離:", recovered)
-
     # 病死率
     rate_deaths = "0%" if len(soup.select(
         "#country_cfr")) == 0 else soup.select("#country_cfr")[0].text
@@ -51,9 +46,7 @@ try:
 
     # 新增確診
     new_confirmed = "0" if len(soup.select(
-        ".country_confirmed_change")) == 0 else soup.select(".country_confirmed_change")[0].text
-    if len(new_confirmed.strip()) == 0:
-        new_confirmed = "0"
+        ".country_recovered")) == 0 else soup.select(".country_recovered")[0].text.split("+")[1]
     print("新增確診:", new_confirmed)
 
     # 新增死亡
@@ -62,13 +55,12 @@ try:
     if len(new_deaths.strip()) == 0:
         new_deaths = "0"
     else:
-        new_deaths = new_deaths.split("+ ")[1]
+        new_deaths = new_deaths.split("+")[1]
     print("新增死亡:", new_deaths)
 
     data.append({
         "total_confirmed": total_confirmed,
         "total_deaths": total_deaths,
-        "recovered": recovered,
         "rate_deaths": rate_deaths,
         "new_confirmed": new_confirmed,
         "new_deaths": new_deaths
