@@ -1,12 +1,13 @@
 '''
 Author: Sean
 Date: 2021-05-22 23:21:42
-LastEditTime: 2021-06-14 18:43:01
+LastEditTime: 2021-06-28 17:47:08
 Description: Crawler of Taiwan Covid-19 statistics (台灣疫情報告)
 '''
 
 import requests
 from bs4 import BeautifulSoup
+import time
 
 # 初始化 Firebase 連接
 import firebase_admin
@@ -63,7 +64,8 @@ try:
         "total_deaths": total_deaths,
         "rate_deaths": rate_deaths,
         "new_confirmed": new_confirmed,
-        "new_deaths": new_deaths
+        "new_deaths": new_deaths,
+        "record_date": time.strftime("%Y年%m月%d日", time.localtime())
     })
 
     # 寫入 database reference.
