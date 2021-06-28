@@ -1,7 +1,7 @@
 '''
 Author: Sean
 Date: 2021-05-22 23:21:42
-LastEditTime: 2021-06-28 17:47:08
+LastEditTime: 2021-06-28 18:00:38
 Description: Crawler of Taiwan Covid-19 statistics (台灣疫情報告)
 '''
 
