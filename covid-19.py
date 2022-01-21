@@ -1,7 +1,7 @@
 '''
 Author: Sean
 Date: 2021-05-22 23:21:42
-LastEditTime: 2021-06-28 18:00:38
+LastEditTime: 2022-01-21 14:29:30
 Description: Crawler of Taiwan Covid-19 statistics (台灣疫情報告)
 '''
 
@@ -47,7 +47,7 @@ try:
 
     # 新增確診
     new_confirmed = "0" if len(soup.select(
-        ".country_recovered")) == 0 else soup.select(".country_recovered")[0].text.split("+")[1]
+        ".country_confirmed_percent")) == 0 else soup.select(".country_confirmed_percent")[1].text.split("本土病例 ")[1]
     print("新增確診:", new_confirmed)
 
     # 新增死亡
